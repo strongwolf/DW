@@ -1,1 +1,1 @@
-# DW
+# A Dual Weighting Label Assignment Scheme for Object Detection
