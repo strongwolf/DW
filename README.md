@@ -34,7 +34,6 @@ Assuming you have put the COCO dataset into `data/coco/` and have downloaded the
 
 ```
 ./tools/dist_test.sh configs/dw_r50_fpn_1x_coco.py weights/r50_1x.pth 8 --eval bbox
-
 ```
 
 ## Training
