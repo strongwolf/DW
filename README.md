@@ -33,7 +33,7 @@ For your convenience, we provide the following trained models. These models are 
 Assuming you have put the COCO dataset into `data/coco/` and have downloaded the models into the `weights/`, you can now evaluate the models on the COCO val2017 split:
 
 ```
-./tools/dist_test.sh configs/dw_r50_fpn_1x_coco.py weights/r50_1x.pth 8 --eval bbox
+bash dist_test.sh configs/dw_r50_fpn_1x_coco.py weights/r50_1x.pth 8 --eval bbox
 ```
 
 ## Training
@@ -41,5 +41,5 @@ Assuming you have put the COCO dataset into `data/coco/` and have downloaded the
 The following command line will train `dw_r50_fpn_1x_coco` on 8 GPUs:
 
 ```
-./tools/dist_train.sh configs/dw_r50_fpn_1x_coco.py 8 --work-dir weights/r50_1x
+bash dist_train.sh configs/dw_r50_fpn_1x_coco.py 8 --work-dir weights/r50_1x
 ```
