@@ -18,7 +18,7 @@ from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
 from mmdet.utils import collect_env, get_root_logger
 
-from heads import *
+from dw_head import DWHead
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
