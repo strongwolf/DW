@@ -66,6 +66,7 @@ class DWHead(AnchorFreeHead):
                  *args,
                  soft_prior=True,
                  reg_refine=True,
+                 prior_offset=0.5,
                  norm_cfg=dict(type='GN', num_groups=32, requires_grad=True),
                  init_cfg=dict(
                     type='Normal',
@@ -87,7 +88,7 @@ class DWHead(AnchorFreeHead):
             soft_prior=soft_prior,
             num_classes=self.num_classes,
             strides=self.strides)
-        self.prior_generator.offset = 0.5
+        self.prior_generator.offset = prior_offset
         
     def init_weights(self):
         super(DWHead, self).init_weights()
