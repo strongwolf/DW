@@ -17,11 +17,11 @@ For your convenience, we provide the following trained models. These models are 
 
 | Backbone     | Style     | DCN     | MS <br> train | Box refine | Lr <br> schd | box AP <br> (val)  | &nbsp; &nbsp; Download  &nbsp; &nbsp;  |
 |:------------:|:---------:|:-------:|:-------------:|:----------:|:------------:|:-------------------:|:--------------------------------------:|
-| R-50         | pytorch   | N       | N             | N          | 1x           |                |  [model] &#124; [log]|
-| R-50         | pytorch   | N       | N             | Y          | 1x           |                |  [model] &#124; [log]|
-| R-50         | pytorch   | N       | Y             | Y          | 2x           |                |  [model] &#124; [log]|
-| R-50         | pytorch   | Y       | Y             | Y          | 2x           |                |  [model] &#124; [log]|
-| R-101        | pytorch   | N       | N             | Y          | 1x           |                |  [model] &#124; [log]|
+| R-50         | pytorch   | N       | N             | N          | 1x           | 41.5               |  [model](https://drive.google.com/file/d/1Vzml7u5bQTA_qYLu826vj2HwFUXcAOeL/view?usp=sharing) &#124; [log](https://drive.google.com/file/d/1fQkp48N3KsLgQSMN8nRmQJ15VWRXpYTT/view?usp=sharing)|
+| R-50         | pytorch   | N       | N             | Y          | 1x           | 42.1               |  [model] &#124; [log]|
+| R-50         | pytorch   | N       | Y             | Y          | 2x           | 44.8               |  [model] &#124; [log]|
+| R-50         | pytorch   | Y       | Y             | Y          | 2x           | 47.9               |  [model] &#124; [log]|
+| R-101        | pytorch   | N       | Y             | N          | 2x           | 46.1               |  [model] &#124; [log]|
 
 **Notes:**
 
