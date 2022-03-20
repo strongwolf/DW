@@ -87,8 +87,8 @@ class DWHead(AnchorFreeHead):
             soft_prior=soft_prior,
             num_classes=self.num_classes,
             strides=self.strides)
+        self.prior_generator.offset = 0.5
         
-    
     def init_weights(self):
         super(DWHead, self).init_weights()
         bias_cls = bias_init_with_prob(0.02)
@@ -99,27 +99,12 @@ class DWHead(AnchorFreeHead):
             normal_init(self.reg_offset, std=0.01)
             self.reg_offset.bias.data.zero_()
     
-    
     def _init_layers(self):
         super()._init_layers()
         self.conv_centerness = nn.Conv2d(self.feat_channels, 1, 3, padding=1)
         self.scales = nn.ModuleList([Scale(1.0) for _ in self.strides])
         if self.with_reg_refine:
             self.reg_offset = nn.Conv2d(self.feat_channels, 4 * 2, 3, padding=1)
-        
-    def _get_points_single(self,
-                           featmap_size,
-                           stride,
-                           dtype,
-                           device,
-                           offset=0.5,
-                           flatten=False):
-
-        y, x = super()._get_points_single(featmap_size, stride, dtype,
-                                              device)
-        points = torch.stack((x.reshape(-1) * stride, y.reshape(-1) * stride),
-                             dim=-1) + stride * offset
-        return points
     
     def deform_sampling(self, feat, offset):
         b, c, h, w = feat.shape
@@ -140,7 +125,7 @@ class DWHead(AnchorFreeHead):
         bbox_pred *= stride
         if self.with_reg_refine:
             reg_dist = bbox_pred.permute(0, 2, 3, 1).reshape(-1, 4)
-            points = self._get_points_single((h,w), stride, dtype=x.dtype, device=x.device)
+            points = self.prior_generator.single_level_grid_priors((h,w), self.strides.index(stride), dtype=x.dtype, device=x.device)
             points = points.repeat(b, 1) 
             decoded_bbox_preds = distance2bbox(points, reg_dist).reshape(b, h, w, 4).permute(0, 3, 1, 2)
             reg_offset = self.reg_offset(reg_feat)
@@ -218,7 +203,7 @@ class DWHead(AnchorFreeHead):
         assert len(cls_scores) == len(bbox_preds) == len(objectnesses)
         all_num_gt = sum([len(gt_bbox) for gt_bbox in gt_bboxes])
         featmap_sizes = [featmap.size()[-2:] for featmap in cls_scores]
-        all_level_points = self.get_points(featmap_sizes, bbox_preds[0].dtype,
+        all_level_points = self.prior_generator.grid_priors(featmap_sizes, bbox_preds[0].dtype,
                                            bbox_preds[0].device)
         inside_gt_bbox_mask_list, bbox_targets_list = self.get_targets(
             all_level_points, gt_bboxes)
@@ -312,7 +297,6 @@ class DWHead(AnchorFreeHead):
 
         return inside_gt_bbox_mask, bbox_targets
 
-    
     def get_bboxes(self,
                    cls_scores,
                    bbox_preds,
@@ -327,7 +311,7 @@ class DWHead(AnchorFreeHead):
         num_levels = len(cls_scores)
 
         featmap_sizes = [cls_scores[i].shape[-2:] for i in range(num_levels)]
-        mlvl_priors = self.get_points(featmap_sizes, bbox_preds[0].dtype,
+        mlvl_priors = self.prior_generator.grid_priors(featmap_sizes, bbox_preds[0].dtype,
                                            bbox_preds[0].device)
         result_list = []
 
