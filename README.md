@@ -13,7 +13,7 @@ Label assignment (LA), which aims to assign each training sample a positive (pos
 
 ## Results and Models
 
-For your convenience, we provide the following trained models. These models are trained with a mini-batch size of 16 images on 8 Nvidia 3090Ti GPUs (2 images per GPU).
+For your convenience, we provide the following trained models. These models are trained with a mini-batch size of 16 images on 8 Nvidia RTX 3090 GPUs (2 images per GPU).
 
 | Backbone     | Style     | DCN     | MS <br> train | Box refine | Lr <br> schd | box AP <br> (val)  | &nbsp; &nbsp; Download  &nbsp; &nbsp;  |
 |:------------:|:---------:|:-------:|:-------------:|:----------:|:------------:|:-------------------:|:--------------------------------------:|
