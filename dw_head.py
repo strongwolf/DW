@@ -144,7 +144,7 @@ class DWHead(AnchorFreeHead):
                             center_prior_weights, ious, inside_gt_bbox_mask):
         num_gts = len(gt_labels)
         joint_conf = (cls_score * objectness)
-        #To more precisely estimatae the consistency degree between cls and reg heads, we represent IoU score as an expentional function of reg loss.
+        #To more precisely estimate the consistency degree between cls and reg heads, we represent IoU score as an expentional function of the reg loss.
         p_loc = torch.exp(-reg_loss*5)
         p_cls = (cls_score * objectness)[:, gt_labels] 
         p_pos = p_cls * p_loc
