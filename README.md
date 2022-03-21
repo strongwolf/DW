@@ -43,3 +43,13 @@ The following command line will train `dw_r50_fpn_1x_coco` on 8 GPUs:
 ```
 bash dist_train.sh configs/dw_r50_fpn_1x_coco.py 8 --work-dir weights/r50_1x
 ```
+
+## Citation
+```
+@inproceedings{shuai2022DW,
+  title={A Dual Weighting Label Assignment Scheme for Object Detection},
+  author={Li, Shuai and He, Chenhang and Li Ruihuang and Zhang, Lei},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  year={2022}
+}
+```
