@@ -1,5 +1,5 @@
 # A Dual Weighting Label Assignment Scheme for Object Detection
-This repo hosts the code for implementing the DW, as presented in our CVPR 2022 paper.
+This repo hosts the code for implementing the [DW](https://arxiv.org/pdf/2203.09730.pdf), as presented in our CVPR 2022 paper.
 
 ## Introduction
 
