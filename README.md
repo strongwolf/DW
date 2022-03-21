@@ -9,7 +9,7 @@ Label assignment (LA), which aims to assign each training sample a positive (pos
 
 - This DW implementation is based on [MMDetection](https://github.com/open-mmlab/mmdetection). Therefore the installation is the same as original MMDetection.
 
-- Please check [get_started.md](docs/get_started.md) for installation. Make sure the version of MMDetection is larger than 2.18.0.
+- Please check [get_started.md](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/get_started.md) for installation. Make sure the version of MMDetection is larger than 2.18.0.
 
 ## Results and Models
 
