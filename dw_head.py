@@ -123,7 +123,7 @@ class DWHead(AnchorFreeHead):
         centerness = self.conv_centerness(reg_feat)
         bbox_pred = scale(bbox_pred).float()
         bbox_pred = F.relu(bbox_pred)
-        bbox_pred *= stride
+        bbox_pred = bbox_pred * stride
         if self.with_reg_refine:
             reg_dist = bbox_pred.permute(0, 2, 3, 1).reshape(-1, 4)
             points = self.prior_generator.single_level_grid_priors((h,w), self.strides.index(stride), dtype=x.dtype, device=x.device)
